@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static com.gmail.kallrobin92.addressBookFinal.Application.serverAddressBook;
+import static com.gmail.kallrobin92.addressBookFinal.Application.mergedAddressBook;
 
 /**
  * All the logical operations for the address book application
@@ -125,6 +126,12 @@ class Operations {
                 "\nFirst name: " + addressBook.get(index).getFirstName() +
                 "\nLast name: " + addressBook.get(index).getLastName() +
                 "\nEmail: " + addressBook.get(index).geteMail() + "\n\n";
+    }
+
+    void mergeLocalAndCentral(){
+        mergedAddressBook.clear();
+        mergedAddressBook.addAll(addressBook);
+        mergedAddressBook.addAll(serverAddressBook);
     }
 
     /**

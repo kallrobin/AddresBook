@@ -48,7 +48,7 @@ class Client {
             toServer.println("getall");
 
             while ((inputLine = fromServer.readLine()) != null) {
-                if (inputLine.equals("End of file")) break;
+                if (inputLine.equals("")) break;
                 String[] newContact = inputLine.split(" ");
                 serverAddressBook.add(new Contact(newContact[1], newContact[2], newContact[3], newContact[0]));
                 contactCount++;

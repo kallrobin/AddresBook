@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
-import static java.util.Arrays.asList;
-
 
 /**
  * Created by Robin Gk on 2016-11-24 as a school project.
@@ -19,6 +17,7 @@ class Application {
     private final static Logger log = Logger.getLogger(Application.class.getName());
     private ArrayList<Contact> addressBook = new ArrayList<>();
     static ArrayList<Contact> serverAddressBook = new ArrayList<>();
+    static ArrayList<Contact> mergedAddressBook = new ArrayList<>();
 
     private List<String> hosts = Arrays.asList("localhost", "localhost");
     private List<Integer> ports = Arrays.asList(61616, 60606);
@@ -62,8 +61,8 @@ class Application {
                     break;
                 case ("list"):
                     if (input.length == 1) {
-                        consoleCommunicator.printToUser(operations.formatAddressBook(operations.sort(addressBook)));
-                        consoleCommunicator.printToUser(operations.formatAddressBook(operations.sort(serverAddressBook)));
+                        operations.mergeLocalAndCentral();
+                        consoleCommunicator.printToUser(operations.formatAddressBook(operations.sort(mergedAddressBook)));
                     } else {
                         log.info("User \"list\" input parameters incorrect");
                         consoleCommunicator.invalidParameters();
@@ -71,13 +70,10 @@ class Application {
                     break;
                 case ("search"):
                     if (input.length == 2) {
+                        operations.mergeLocalAndCentral();
                         consoleCommunicator.printToUser(
                                 operations.formatAddressBook(
-                                        operations.sort(operations.search(input[1], addressBook))));
-
-                        consoleCommunicator.printToUser(
-                                operations.formatAddressBook(
-                                        operations.sort(operations.search(input[1], serverAddressBook))));
+                                        operations.sort(operations.search(input[1], mergedAddressBook))));
                     } else {
                         log.info("User \"search\" input parameters incorrect");
                         consoleCommunicator.invalidParameters();
