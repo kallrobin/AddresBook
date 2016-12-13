@@ -129,10 +129,10 @@ class Operations {
     }
 
     void mergeLocalAndCentral(){
-        mergedAddressBook.clear();
-        mergedAddressBook.addAll(addressBook);
-        mergedAddressBook.addAll(serverAddressBook);
-    }
+            mergedAddressBook.clear();
+            mergedAddressBook.addAll(addressBook);
+            mergedAddressBook.addAll(serverAddressBook);
+        }
 
     /**
      * Takes an ArrayList and returns a sorted version of it.
